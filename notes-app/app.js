@@ -27,9 +27,8 @@ yargs.command({
         
     },
     handler: function(argv) {
-        console.log(argv.title,argv.body)
         // To call method form your own package, same syntax
-        notes.addNote(title, body);
+        notes.addNote(argv.title, argv.body);
     }
 })
 
