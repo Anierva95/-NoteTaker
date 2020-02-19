@@ -1,26 +1,26 @@
 const fs = require('fs');
-
+const chalk = require('chalk');
 
 const getNotes = () => {
     return 'Your Notes...'
 }
 
 const addNote = function(title,body) {
-    const notes = loadNotes()
+    const notes = loadNotes();
     const duplicateNotes = notes.filter(function(note) {
         return note.title === title
     })
 
-    if (diplicateNotes.length === 0) {
+    if (duplicateNotes.length === 0) {
+        console.log(chalk.blue("New note added!"));
         // PUSH object properties
         notes.push({
             title: title,
             body: body
     })
-
     saveNotes(notes);
-
-
+    } else {
+        console.log(chalk.red("Note title was taken!"));
     }
 
 
