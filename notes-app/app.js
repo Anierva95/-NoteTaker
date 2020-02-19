@@ -36,8 +36,18 @@ yargs.command({
 yargs.command({
     command: 'remove',
     describe: 'Remove a note',
-    handler: function() {
-        console.log(chalk.red('Removing a note!'))
+    builder: {
+        title: {
+            describe: 'Note Title',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: function(argv) {
+
+        // Remeber: if it is input, it is argument vector
+        console.log(chalk.red(`Removing note: ${argv.title}`));
+        notes.removeNote(argv.title);
     }
 })
 
