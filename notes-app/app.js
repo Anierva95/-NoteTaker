@@ -26,7 +26,7 @@ yargs.command({
         }
         
     },
-    handler: function(argv) {
+    handler(argv) {
         // To call method form your own package, same syntax
         notes.addNote(argv.title, argv.body);
     }
@@ -43,10 +43,9 @@ yargs.command({
             type: 'string'
         }
     },
-    handler: function(argv) {
+    handler(argv) {
 
         // Remeber: if it is input, it is argument vector
-        console.log(chalk.red(`Removing note: ${argv.title}`));
         notes.removeNote(argv.title);
     }
 })
@@ -56,8 +55,8 @@ yargs.command({
 yargs.command({
     command: 'list',
     describe: 'list your notes',
-    handler: function() {
-        console.log(chalk.yellow('Listing out all notes!'))
+    handler() {
+        notes.listNotes();
     }
 })
 
@@ -65,11 +64,21 @@ yargs.command({
 yargs.command({
     command: 'read',
     describe: 'Read a note',
-    handler: function() {
-        console.log(chalk.blue('Reading a note!'))
+    builder: {
+        title: {
+            describe: "read notes",
+            demandOption: true,
+            type: 'string',
+        }
+    },
+    handler(argv) {
+        notes.readNotes(argv.title);
+        console.log(chalk.blue('Reading a note!'));
     }
 })
 
 // Add, remove, read, list
+
+
 
 yargs.parse();
