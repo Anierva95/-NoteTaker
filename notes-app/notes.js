@@ -1,6 +1,8 @@
 const fs = require('fs');
 const chalk = require('chalk');
 
+debugger
+
 
 // To grab notes
 const getNotes = () => 'Your Notes...'
